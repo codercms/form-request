@@ -2,7 +2,7 @@
 A lightweight FormRequest implementation with data normalization.
 Based on symfony/validator.
 
-Comparison:
+Comparison on 10000 iterations with complex validation rules:
 1. Faster then Laravel FormRequest about 3.8 times
 2. Faster then Symfony Form about 9.7 times
 
