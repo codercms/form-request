@@ -1,0 +1,36 @@
+{
+    "type": "library",
+    "name": "codercms/form-request",
+    "description": "A lightweight FormRequest implementation inspired by Laravel && Symfony",
+    "keywords": [
+        "form",
+        "request",
+        "symfony",
+        "validator"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitry K.",
+            "email": "coder1994@gmail.com",
+            "homepage": "https://dmitry-k.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "symfony/validator": "^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Codercms\\FormRequest\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Codercms\\FormRequest\\Tests\\": "tests/"
+        }
+    }
+}
