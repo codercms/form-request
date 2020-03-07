@@ -57,7 +57,7 @@ class RequestNormalizer implements RequestNormalizerInterface
         foreach ($existence->constraints as $constraint) {
             if ($constraint instanceof Assert\Collection) {
                 foreach ($data as $key => $value) {
-                    if (is_array($data)) {
+                    if (is_array($value)) {
                         $data[$key] = $this->normalize($value, $constraint);
                     }
                 }
