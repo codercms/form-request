@@ -38,12 +38,14 @@ class RequestNormalizer implements RequestNormalizerInterface
     protected function normalizeDataByExistence($data, Assert\Existence $existence)
     {
         foreach ($existence->constraints as $constraint) {
-            if ($constraint instanceof Assert\Collection) {
-                $data = $this->normalize($data, $constraint);
-            } elseif ($constraint instanceof Assert\All && is_array($data)) {
-                $data = $this->normalizeDataByAll($data, $constraint);
-            } elseif ($constraint instanceof Assert\Type) {
+            if ($constraint instanceof Assert\Type) {
                 $data = $this->normalizeValueByType($data, $constraint);
+            } elseif (is_array($data)) {
+                if ($constraint instanceof Assert\Collection) {
+                    $data = $this->normalize($data, $constraint);
+                } elseif ($constraint instanceof Assert\All) {
+                    $data = $this->normalizeDataByAll($data, $constraint);
+                }
             }
         }
 
@@ -55,7 +57,9 @@ class RequestNormalizer implements RequestNormalizerInterface
         foreach ($existence->constraints as $constraint) {
             if ($constraint instanceof Assert\Collection) {
                 foreach ($data as $key => $value) {
-                    $data[$key] = $this->normalize($value, $constraint);
+                    if (is_array($value)) {
+                        $data[$key] = $this->normalize($value, $constraint);
+                    }
                 }
             } elseif ($constraint instanceof Assert\Type) {
                 foreach ($data as $key => $value) {
